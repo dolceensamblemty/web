@@ -11,29 +11,84 @@
             font-family: 'Inter', sans-serif;
             background-color: #f7f3f2;
         }
-        .animate-fade-in {
-            animation: fadeIn 1.5s ease-out;
-        }
-        .animate-fade-in-delay-1 {
-            animation: fadeIn 1.5s ease-out 0.5s forwards;
-            opacity: 0;
-        }
+        /* Keyframe animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Animation classes */
+        .animate-fade-in { animation: fadeIn 1.5s ease-out; }
+        .animate-slide-in { animation: slideInRight 1s ease-out; }
+        .animate-pop-in-1 { animation: popIn 0.8s ease-out 0.2s forwards; opacity: 0; }
+        .animate-pop-in-2 { animation: popIn 0.8s ease-out 0.4s forwards; opacity: 0; }
+        .animate-pop-in-3 { animation: popIn 0.8s ease-out 0.6s forwards; opacity: 0; }
+        .animate-pop-in-4 { animation: popIn 0.8s ease-out 0.8s forwards; opacity: 0; }
+        .animate-pop-in-5 { animation: popIn 0.8s ease-out 1s forwards; opacity: 0; }
+
+        /* General styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 1.5rem;
+            max-width: 600px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Active button styles */
+        .repertorio-btn.active {
+            background-color: #EC4899; /* pink-600 */
+            color: #fff;
+        }
+        .repertorio-btn.active.event {
+             background-color: #EC4899; /* pink-600 */
+             color: #fff;
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
+    <!-- Centered Logo -->
+    <div class="py-4 text-center mt-8">
+        <img src="https://i.postimg.cc/kGB34zWp/1.png" alt="Dolce Ensamble Logo" class="w-32 h-32 md:w-40 md:h-40 object-contain mx-auto animate-fade-in">
+    </div>
 
     <!-- Header -->
     <header class="bg-white shadow-lg py-4 px-6 fixed top-0 left-0 right-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-2">
-                <img src="https://i.postimg.cc/kGB34zWp/1.png" alt="Dolce Ensamble Logo" class="w-10 h-10 object-contain">
-                <span class="text-2xl font-bold text-gray-900">Dolce Ensamble</span>
-            </a>
-            <nav class="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <div class="container mx-auto flex justify-center items-center">
+            <nav class="flex space-x-6 text-gray-700 font-medium overflow-x-auto whitespace-nowrap md:justify-center">
                 <a href="#inicio" class="hover:text-pink-600 transition-colors duration-300">Inicio</a>
                 <a href="#sobre-nosotros" class="hover:text-pink-600 transition-colors duration-300">Sobre nosotros</a>
                 <a href="#servicios" class="hover:text-pink-600 transition-colors duration-300">Servicios</a>
@@ -41,22 +96,16 @@
                 <a href="#repertorio" class="hover:text-pink-600 transition-colors duration-300">Repertorio</a>
                 <a href="#contacto" class="hover:text-pink-600 transition-colors duration-300">Contacto</a>
             </nav>
-            <button class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path>
-                </svg>
-            </button>
         </div>
     </header>
 
-    <main class="pt-20">
+    <main class="pt-44">
         <!-- Hero Section -->
         <section id="inicio" class="relative w-full h-[600px] flex items-center justify-center text-center bg-black overflow-hidden">
-            <!-- Background Image from social media -->
             <img src="https://i.postimg.cc/q731y05J/portada.jpg" alt="Hero Image" class="absolute inset-0 w-full h-full object-cover opacity-60">
             <div class="relative z-10 text-white p-6 md:p-12 bg-black bg-opacity-40 rounded-3xl shadow-lg border border-white border-opacity-30 mx-4">
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 animate-fade-in">La Música que Soñaste para tu Evento</h1>
-                <p class="text-lg md:text-xl mb-8 leading-relaxed max-w-2xl mx-auto animate-fade-in-delay-1">
+                <p class="text-lg md:text-xl mb-8 leading-relaxed max-w-2xl mx-auto animate-fade-in">
                     En Dolce Ensamble creamos la atmósfera perfecta para cada momento inolvidable.
                 </p>
                 <a href="#servicios" class="inline-block bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-pink-700 transition-colors duration-300 transform hover:scale-105">
@@ -68,8 +117,8 @@
         <!-- About Us Section -->
         <section id="sobre-nosotros" class="py-16 bg-gray-200">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-900">Sobre Nosotros</h2>
-                <div class="max-w-4xl mx-auto text-gray-600 text-lg leading-relaxed">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-900 animate-slide-in">Sobre Nosotros</h2>
+                <div class="max-w-4xl mx-auto text-gray-600 text-lg leading-relaxed animate-fade-in">
                     <p class="mb-4">
                         Somos un grupo de músicos apasionados, dedicados a transformar eventos en experiencias inolvidables a través de la música en vivo. Con años de experiencia y una amplia formación, nuestro objetivo es entender tu visión y crear la banda sonora perfecta para tu gran día.
                     </p>
@@ -80,37 +129,42 @@
             </div>
         </section>
 
-        <!-- Services Section -->
+        <!-- New Ensambles Section -->
         <section id="servicios" class="py-16 bg-white">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">Nuestros Ensambles</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 animate-slide-in">Nuestros Ensambles</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Ensemble Card -->
-                    <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
-                        <img src="https://i.postimg.cc/q777L5H7/cuarteto.jpg" alt="Cuarteto de Cuerdas" class="rounded-xl mb-6 w-full h-48 object-cover">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Cuarteto de Cuerdas</h3>
+                    <!-- Ensemble Card - Dúo Romántico -->
+                    <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 animate-pop-in-1">
+                        <img src="https://placehold.co/600x400/94a3b8/fff?text=Arpa+%26+Cantante" alt="Dúo Romántico" class="rounded-xl mb-6 w-full h-48 object-cover">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Dúo Romántico (Arpa y Cantante)</h3>
                         <p class="text-gray-600 mb-4">
-                            El ensamble clásico y elegante para ceremonias religiosas y civiles.
+                            Ideal para ceremonias íntimas. La voz dulce y el sonido celestial del arpa crean una atmósfera mágica.
                         </p>
-                        <a href="#" class="text-pink-600 font-semibold hover:underline">Ver más detalles</a>
                     </div>
-                    <!-- Ensemble Card -->
-                    <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
-                        <img src="https://i.postimg.cc/BQt1jYfD/piano-cantante.jpg" alt="Piano y Cantante" class="rounded-xl mb-6 w-full h-48 object-cover">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Piano y Cantante</h3>
+                    <!-- Ensemble Card - Cuarteto de Cuerdas -->
+                    <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 animate-pop-in-2">
+                        <img src="https://placehold.co/600x400/94a3b8/fff?text=Violín+%26+Cello" alt="Cuarteto de Cuerdas" class="rounded-xl mb-6 w-full h-48 object-cover">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Trío Clásico (Violín, Cello y Piano)</h3>
                         <p class="text-gray-600 mb-4">
-                            Una combinación íntima y emotiva, ideal para momentos especiales.
+                            La combinación perfecta de instrumentos que armonizan la ceremonia más elegante, ya sea en una iglesia o en un jardín.
                         </p>
-                        <a href="#" class="text-pink-600 font-semibold hover:underline">Ver más detalles</a>
                     </div>
-                    <!-- Ensemble Card -->
-                    <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
-                        <img src="https://i.postimg.cc/J0vJ6d1h/orquesta.jpg" alt="Coro y Orquesta" class="rounded-xl mb-6 w-full h-48 object-cover">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Coro y Orquesta</h3>
+                    <!-- Ensemble Card - Dúo de Jazz -->
+                    <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 animate-pop-in-3">
+                        <img src="https://placehold.co/600x400/94a3b8/fff?text=Saxofonista+%26+Guitarrista" alt="Dúo de Jazz" class="rounded-xl mb-6 w-full h-48 object-cover">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Dúo de Jazz (Saxofonista y Guitarrista)</h3>
                         <p class="text-gray-600 mb-4">
-                            Elige un ensamble majestuoso para un evento inolvidable.
+                            Añade un toque de sofisticación y ritmo a tu evento. Perfecto para recepciones y cocteles.
                         </p>
-                        <a href="#" class="text-pink-600 font-semibold hover:underline">Ver más detalles</a>
+                    </div>
+                    <!-- Ensemble Card - Quinteto de Viento -->
+                    <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2 animate-pop-in-4">
+                        <img src="https://placehold.co/600x400/94a3b8/fff?text=Corno+%26+Percusión" alt="Quinteto de Viento" class="rounded-xl mb-6 w-full h-48 object-cover">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Ensamble de Viento (Corno Francés y Percusión)</h3>
+                        <p class="text-gray-600 mb-4">
+                            Una opción única y versátil para los amantes de la música clásica y contemporánea.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -119,8 +173,8 @@
         <!-- Custom Quote Section -->
         <section id="cotizacion" class="py-16 bg-gray-200">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">Crea tu Ensamble Personalizado</h2>
-                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 animate-slide-in">Crea tu Ensamble Personalizado</h2>
+                <p class="text-gray-600 mb-8 max-w-2xl mx-auto animate-fade-in">
                     Selecciona los músicos que deseas para tu evento. Puedes combinar instrumentos y cantantes para crear la atmósfera perfecta.
                 </p>
                 
@@ -135,21 +189,27 @@
                     </ul>
                 </div>
 
-                <div id="quote-form-section" class="max-w-xl mx-auto bg-white p-8 rounded-3xl shadow-lg hidden">
+                <div id="quote-form-section" class="max-w-xl mx-auto bg-white p-8 rounded-3xl shadow-lg">
                     <h3 class="text-2xl font-bold mb-6 text-gray-900">Solicita tu Cotización</h3>
-                    <form class="space-y-6">
+                    <form id="quote-form" action="https://formspree.io/f/mqadynky" method="POST" class="space-y-6">
+                        <input type="hidden" name="_subject" value="Nueva Solicitud de Cotización de Dolce Ensamble">
+                        
                         <div>
-                            <input type="text" id="name-input" placeholder="Tu Nombre Completo" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300">
+                            <label for="name-input" class="block text-sm font-medium text-gray-700 text-left mb-1">Nombre Completo</label>
+                            <input type="text" name="name" id="name-input" placeholder="Tu Nombre Completo" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300" required>
                         </div>
                         <div>
-                            <input type="email" id="email-input" placeholder="Tu Correo Electrónico" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300">
+                            <label for="email-input" class="block text-sm font-medium text-gray-700 text-left mb-1">Correo Electrónico</label>
+                            <input type="email" name="email" id="email-input" placeholder="Tu Correo Electrónico" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300" required>
                         </div>
                         <div>
-                            <input type="text" id="location-input" placeholder="Ubicación aproximada (ej. San Pedro, Cumbres)" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300">
+                            <label for="location-input" class="block text-sm font-medium text-gray-700 text-left mb-1">Ubicación aproximada</label>
+                            <input type="text" name="location" id="location-input" placeholder="Ej. San Pedro, Cumbres" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300" required>
                         </div>
                         <div>
-                            <select id="event-type-select" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300">
-                                <option value="" disabled selected>Tipo de Evento</option>
+                            <label for="event-type-select" class="block text-sm font-medium text-gray-700 text-left mb-1">Tipo de Evento</label>
+                            <select name="event-type" id="event-type-select" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300" required>
+                                <option value="" disabled selected>Selecciona un tipo de evento</option>
                                 <option value="Boda">Boda</option>
                                 <option value="XV Años">XV Años</option>
                                 <option value="Fiesta de Empresa">Fiesta de Empresa</option>
@@ -159,70 +219,95 @@
                             </select>
                         </div>
                         <div>
-                            <select id="duration-select" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300">
-                                <option value="" disabled selected>Duración Requerida</option>
+                            <label for="duration-select" class="block text-sm font-medium text-gray-700 text-left mb-1">Duración Requerida</label>
+                            <select name="duration" id="duration-select" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300" required>
+                                <option value="" disabled selected>Selecciona la duración</option>
                                 <option value="1 Hora">1 Hora</option>
+                                <option value="1.5 Horas">1.5 Horas</option>
                                 <option value="2 Horas">2 Horas</option>
+                                <option value="2.5 Horas">2.5 Horas</option>
                                 <option value="3 Horas">3 Horas</option>
                                 <option value="4 Horas o más">4 Horas o más</option>
                             </select>
                         </div>
-                        <button type="submit" id="submit-quote" class="w-full bg-pink-600 text-white font-bold py-4 rounded-full shadow-lg hover:bg-pink-700 transition-colors duration-300 transform hover:scale-105">
-                            Enviar Solicitud
+                        
+                        <!-- Hidden inputs to capture dynamic data -->
+                        <input type="hidden" name="musicians" id="musicians-input">
+                        <input type="hidden" name="repertorio_elegido" id="repertorio-input">
+                        
+                        <button type="submit" class="w-full bg-pink-600 text-white font-bold py-4 rounded-full shadow-lg hover:bg-pink-700 transition-colors duration-300 transform hover:scale-105">
+                            Enviar Cotización
                         </button>
                     </form>
                 </div>
 
             </div>
         </section>
-
+        
         <!-- Repertory Section -->
         <section id="repertorio" class="py-16 bg-gray-200">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">Nuestro Repertorio</h2>
-                <div class="max-w-4xl mx-auto text-gray-600">
-                    <p class="mb-8 leading-relaxed">
-                        Ofrecemos un amplio catálogo que incluye desde música clásica tradicional hasta versiones instrumentales de éxitos modernos.
-                        Puedes elegir las canciones perfectas para cada momento de tu evento.
-                    </p>
-                    <div class="flex justify-center flex-wrap gap-4 mb-8">
-                        <span class="bg-white text-gray-800 py-2 px-4 rounded-full shadow-md font-medium">Música Clásica</span>
-                        <span class="bg-white text-gray-800 py-2 px-4 rounded-full shadow-md font-medium">Pop & Rock</span>
-                        <span class="bg-white text-gray-800 py-2 px-4 rounded-full shadow-md font-medium">Música de Películas</span>
-                        <span class="bg-white text-gray-800 py-2 px-4 rounded-full shadow-md font-medium">Jazz & Bossa</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 animate-slide-in">Nuestro Repertorio</h2>
+                <p class="text-gray-600 mb-8 max-w-2xl mx-auto animate-fade-in">
+                    Ofrecemos un amplio catálogo que incluye desde música clásica tradicional hasta versiones instrumentales de éxitos modernos.
+                    Puedes elegir las canciones perfectas para cada momento de tu evento.
+                </p>
+                
+                <!-- Repertorio - Géneros Musicales -->
+                <div class="mb-8 animate-pop-in-1">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Géneros Musicales</h3>
+                    <div class="flex justify-center flex-wrap gap-4">
+                        <button class="repertorio-btn genre bg-white text-gray-800 py-2 px-4 rounded-full shadow-md font-medium transition-colors duration-300 active" data-category="clasica">Música Clásica</button>
+                        <button class="repertorio-btn genre bg-white text-gray-800 py-2 px-4 rounded-full shadow-md font-medium transition-colors duration-300" data-category="pop-rock">Pop & Rock</button>
+                        <button class="repertorio-btn genre bg-white text-gray-800 py-2 px-4 rounded-full shadow-md font-medium transition-colors duration-300" data-category="peliculas">Música de Películas</button>
+                        <button class="repertorio-btn genre bg-white text-gray-800 py-2 px-4 rounded-full shadow-md font-medium transition-colors duration-300" data-category="jazz-bossa">Jazz & Bossa</button>
                     </div>
-                    <a href="#" class="inline-block bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-pink-700 transition-colors duration-300 transform hover:scale-105">
-                        Descargar Repertorio Completo
-                    </a>
+                </div>
+                <!-- Repertorio - Tipos de Evento -->
+                <div class="mb-8 animate-pop-in-2">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Por Tipo de Evento</h3>
+                    <div class="flex justify-center flex-wrap gap-4">
+                        <button class="repertorio-btn event bg-gray-200 text-gray-800 py-2 px-4 rounded-full shadow-md font-medium transition-colors duration-300" data-category="boda">Boda</button>
+                        <button class="repertorio-btn event bg-gray-200 text-gray-800 py-2 px-4 rounded-full shadow-md font-medium transition-colors duration-300" data-category="cena">Cena</button>
+                        <button class="repertorio-btn event bg-gray-200 text-gray-800 py-2 px-4 rounded-full shadow-md font-medium transition-colors duration-300" data-category="aniversario">Aniversario</button>
+                    </div>
+                </div>
+
+                <div id="repertorio-content" class="bg-white p-8 rounded-3xl shadow-lg max-w-4xl mx-auto text-left">
+                    <!-- Content will be dynamically injected here -->
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- New Contact Section -->
         <section id="contacto" class="py-16 bg-white">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">Contáctanos</h2>
-                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
-                    ¿Listo para hacer de tu evento algo memorable? Cuéntanos tus ideas y te ayudaremos a elegir el ensamble perfecto.
-                </p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 animate-slide-in">Información de Contacto</h2>
                 <div class="max-w-xl mx-auto bg-gray-100 p-8 rounded-3xl shadow-lg">
-                    <form class="space-y-6">
-                        <div>
-                            <input type="text" placeholder="Tu Nombre" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300">
+                    <p class="text-lg text-gray-600 mb-6">Para consultas directas, cotizaciones o cualquier otra pregunta, no dudes en contactarnos a través de los siguientes medios:</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="text-xl">✉️</span>
+                            <a href="mailto:info@dolceensamble.com" class="text-pink-600 hover:text-pink-700 transition-colors duration-300">info@dolceensamble.com</a>
                         </div>
-                        <div>
-                            <input type="email" placeholder="Tu Email" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300">
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="text-xl">📱</span>
+                            <a href="tel:+528112345678" class="text-pink-600 hover:text-pink-700 transition-colors duration-300">+52 811 234 5678</a>
                         </div>
-                        <div>
-                            <input type="tel" placeholder="Tu Teléfono" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300">
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900">Síguenos en nuestras redes sociales</h3>
+                        <div class="flex justify-center space-x-6">
+                            <a href="https://www.facebook.com/dolceensamble" target="_blank" class="text-gray-600 hover:text-pink-600 transition-colors duration-300">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.35c0 .732.593 1.325 1.325 1.325h11.493v-9.294h-3.13v-3.626h3.13v-2.674c0-3.107 1.893-4.795 4.654-4.795 1.325 0 2.463.099 2.793.143v3.251l-1.921.001c-1.503 0-1.795.715-1.795 1.765v2.316h3.587l-.467 3.626h-3.12v9.294h6.183c.732 0 1.325-.593 1.325-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/dolceensamblemty/" target="_blank" class="text-gray-600 hover:text-pink-600 transition-colors duration-300">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.253.15 4.79 1.48 4.942 4.722.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.152 3.253-1.48 4.79-4.722 4.942-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.253-.152-4.79-1.48-4.942-4.722-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.152-3.253 1.48-4.79 4.722-4.942 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.204-6.386 2.502-6.588 6.59-.059 1.281-.073 1.689-.073 4.947 0 3.259.014 3.667.072 4.947.204 4.358 2.502 6.386 6.59 6.588 1.28.059 1.689.073 4.947.073s3.667-.014 4.947-.072c4.358-.204 6.386-2.502 6.588-6.59.059-1.281.073-1.689.073-4.947 0-3.259-.014-3.667-.072-4.947-.204-4.358-2.502-6.386-6.588-1.28-.059-1.689-.073-4.947-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zM18.406 5.467c-.796 0-1.444.648-1.444 1.444s.648 1.444 1.444 1.444 1.444-.648 1.444-1.444-.648-1.444-1.444-1.444z"/></svg>
+                            </a>
                         </div>
-                        <div>
-                            <textarea placeholder="Cuéntanos sobre tu evento..." rows="4" class="w-full p-4 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-500 transition-all duration-300"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-pink-600 text-white font-bold py-4 rounded-full shadow-lg hover:bg-pink-700 transition-colors duration-300 transform hover:scale-105">
-                            Enviar Mensaje
-                        </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -236,33 +321,94 @@
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.35c0 .732.593 1.325 1.325 1.325h11.493v-9.294h-3.13v-3.626h3.13v-2.674c0-3.107 1.893-4.795 4.654-4.795 1.325 0 2.463.099 2.793.143v3.251l-1.921.001c-1.503 0-1.795.715-1.795 1.765v2.316h3.587l-.467 3.626h-3.12v9.294h6.183c.732 0 1.325-.593 1.325-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
                 </a>
                 <a href="https://www.instagram.com/dolceensamblemty/" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.253.15 4.79 1.48 4.942 4.722.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.152 3.253-1.48 4.79-4.722 4.942-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.253-.152-4.79-1.48-4.942-4.722-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.152-3.253 1.48-4.79 4.722-4.942 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.204-6.386 2.502-6.588 6.59-.059 1.281-.073 1.689-.073 4.947 0 3.259.014 3.667.072 4.947.204 4.358 2.502 6.386 6.59 6.588 1.28.059 1.689.073 4.947.073s3.667-.014 4.947-.072c4.358-.204 6.386-2.502 6.588-6.59.059-1.281.073-1.689.073-4.947 0-3.259-.014-3.667-.072-4.947-.204-4.358-2.502-6.386-6.59-6.588-1.28-.059-1.689-.073-4.947-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zM18.406 5.467c-.796 0-1.444.648-1.444 1.444s.648 1.444 1.444 1.444 1.444-.648 1.444-1.444-.648-1.444-1.444-1.444z"/></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.253.15 4.79 1.48 4.942 4.722.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.152 3.253-1.48 4.79-4.722 4.942-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.253-.152-4.79-1.48-4.942-4.722-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.152-3.253 1.48-4.79 4.722-4.942 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.204-6.386 2.502-6.588 6.59-.059 1.281-.073 1.689-.073 4.947 0 3.259.014 3.667.072 4.947.204 4.358 2.502 6.386 6.59 6.588 1.28.059 1.689.073 4.947.073s3.667-.014 4.947-.072c4.358-.204 6.386-2.502 6.588-6.59.059-1.281.073-1.689.073-4.947 0-3.259-.014-3.667-.072-4.947-.204-4.358-2.502-6.386-6.588-1.28-.059-1.689-.073-4.947-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zM18.406 5.467c-.796 0-1.444.648-1.444 1.444s.648 1.444 1.444 1.444 1.444-.648 1.444-1.444-.648-1.444-1.444-1.444z"/></svg>
                 </a>
             </div>
             <p class="text-sm">© 2025 Dolce Ensamble. Todos los derechos reservados.</p>
         </div>
     </footer>
 
+    <!-- Modals for services -->
+    <!-- Modal for Dúo Romántico -->
+    <div id="duo-romantico-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-2xl font-bold mb-4 text-gray-900">Dúo Romántico (Arpa y Cantante)</h3>
+            <p class="text-gray-600 text-lg leading-relaxed">
+                Ideal para ceremonias íntimas. La voz dulce y el sonido celestial del arpa crean una atmósfera mágica.
+            </p>
+        </div>
+    </div>
+    <!-- Modal for Trío Clásico -->
+    <div id="trio-clasico-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-2xl font-bold mb-4 text-gray-900">Trío Clásico (Violín, Cello y Piano)</h3>
+            <p class="text-gray-600 text-lg leading-relaxed">
+                La combinación perfecta de instrumentos que armonizan la ceremonia más elegante, ya sea en una iglesia o en un jardín.
+            </p>
+        </div>
+    </div>
+    <!-- Modal for Dúo de Jazz -->
+    <div id="duo-jazz-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-2xl font-bold mb-4 text-gray-900">Dúo de Jazz (Saxofonista y Guitarrista)</h3>
+            <p class="text-gray-600 text-lg leading-relaxed">
+                Añade un toque de sofisticación y ritmo a tu evento. Perfecto para recepciones y cocteles, creando un ambiente relajado y elegante.
+            </p>
+        </div>
+    </div>
+    <!-- Modal for Ensamble de Viento -->
+    <div id="ensamble-viento-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 class="text-2xl font-bold mb-4 text-gray-900">Ensamble de Viento (Corno Francés y Percusión)</h3>
+            <p class="text-gray-600 text-lg leading-relaxed">
+                Una opción única y versátil para los amantes de la música clásica y contemporánea. La combinación del corno francés y la percusión crea un sonido profundo y memorable.
+            </p>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Data for musicians and repertory
             const musicians = [
-                { name: 'Piano', img: 'https://i.postimg.cc/q777L5H7/cuarteto.jpg', icon: '🎹' },
-                { name: 'Violín', img: 'https://i.postimg.cc/q777L5H7/cuarteto.jpg', icon: '🎻' },
-                { name: 'Viola', img: 'https://i.postimg.cc/d16C7z2t/viola.jpg', icon: '🪕' },
-                { name: 'Violonchelo', img: 'https://i.postimg.cc/BQt1jYfD/piano-cantante.jpg', icon: '🎻' },
-                { name: 'Cantante Lírico', img: 'https://i.postimg.cc/J0vJ6d1h/orquesta.jpg', icon: '🎤' },
-                { name: 'Coro', img: 'https://i.postimg.cc/D038tV3N/coro.jpg', icon: '🎶' },
-                { name: 'Flauta', img: 'https://i.postimg.cc/Pq0w8x5X/flauta.jpg', icon: '🎺' },
-                { name: 'Saxofón', img: 'https://i.postimg.cc/T3qgY08m/saxofon.jpg', icon: '🎷' },
-                { name: 'Arpa', img: 'https://i.postimg.cc/Pqx19s3k/arpa.jpg', icon: '🎶' },
+                { name: 'Piano', icon: '🎹' },
+                { name: 'Violín', icon: '🎻' },
+                { name: 'Violonchelo', icon: '🎻' },
+                { name: 'Cantante', icon: '🎤' },
+                { name: 'Saxofonista', icon: '🎷' },
+                { name: 'Guitarrista', icon: '🎸' },
+                { name: 'Arpista', icon: '🎶' },
+                { name: 'Corno Francés', icon: '🎺' },
+                { name: 'Percusionista', icon: '🥁' },
             ];
 
+            const repertorioData = {
+                'clasica': ['Canon en Re Mayor (Pachelbel)', 'Ave María (Schubert)', 'Las Cuatro Estaciones (Vivaldi)', 'Marcha Nupcial (Mendelssohn)', 'Aria de la Suite No. 3 (Bach)'],
+                'pop-rock': ['Perfect (Ed Sheeran)', 'A Thousand Years (Christina Perri)', 'All of Me (John Legend)', 'Hallelujah (Leonard Cohen)', 'Bohemian Rhapsody (Queen)'],
+                'peliculas': ['My Heart Will Go On (Titanic)', 'Tema de La La Land', 'Game of Thrones (tema principal)', 'Star Wars (tema principal)', 'Now We Are Free (Gladiator)'],
+                'jazz-bossa': ['Fly Me to the Moon (Frank Sinatra)', 'Girl from Ipanema (Antonio Carlos Jobim)', 'L-O-V-E (Nat King Cole)', 'Take Five (Dave Brubeck)', 'Summertime (George Gershwin)'],
+                'boda': ['Marcha Nupcial (Mendelssohn)', 'Canon en Re Mayor (Pachelbel)', 'Ave María (Schubert)', 'A Thousand Years (Christina Perri)', 'Perfect (Ed Sheeran)'],
+                'cena': ['Fly Me to the Moon (Frank Sinatra)', 'L-O-V-E (Nat King Cole)', 'Girl from Ipanema (Antonio Carlos Jobim)', 'All of Me (John Legend)', 'Summertime (George Gershwin)'],
+                'aniversario': ['A Thousand Years (Christina Perri)', 'My Heart Will Will Go On (Titanic)', 'Perfect (Ed Sheeran)', 'L-O-V-E (Nat King Cole)', 'Hallelujah (Leonard Cohen)']
+            };
+
             let selectedMusicians = [];
+            let selectedRepertoire = { genre: 'Música Clásica', event: '' };
+
             const musiciansContainer = document.getElementById('musicians-container');
             const selectedSummary = document.getElementById('selected-summary');
             const selectedList = document.getElementById('selected-list');
-            const quoteFormSection = document.getElementById('quote-form-section');
-            const submitQuoteButton = document.getElementById('submit-quote');
+            const quoteForm = document.getElementById('quote-form');
+            const musiciansInput = document.getElementById('musicians-input');
+            const repertorioInput = document.getElementById('repertorio-input');
+            const repertorioBtns = document.querySelectorAll('.repertorio-btn');
+            const repertorioContent = document.getElementById('repertorio-content');
+            const genreBtns = document.querySelectorAll('.repertorio-btn.genre');
+            const eventBtns = document.querySelectorAll('.repertorio-btn.event');
+
 
             function updateSelectedList() {
                 selectedList.innerHTML = '';
@@ -274,16 +420,14 @@
                         selectedList.appendChild(li);
                     });
                     selectedSummary.classList.remove('hidden');
-                    quoteFormSection.classList.remove('hidden');
                 } else {
                     selectedSummary.classList.add('hidden');
-                    quoteFormSection.classList.add('hidden');
                 }
             }
 
-            function createMusicianCard(musician) {
+            function createMusicianCard(musician, index) {
                 const card = document.createElement('div');
-                card.className = 'bg-white p-6 rounded-3xl shadow-lg flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105 hover:shadow-xl';
+                card.className = `bg-white p-6 rounded-3xl shadow-lg flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105 hover:shadow-xl animate-pop-in-${index % 5 + 1}`;
                 card.innerHTML = `
                     <div class="text-5xl mb-4">${musician.icon}</div>
                     <h3 class="text-lg font-semibold text-gray-900 mb-2">${musician.name}</h3>
@@ -303,51 +447,108 @@
 
             musicians.forEach(createMusicianCard);
 
-            submitQuoteButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                const name = document.getElementById('name-input').value;
-                const email = document.getElementById('email-input').value;
-                const location = document.getElementById('location-input').value;
-                const eventType = document.getElementById('event-type-select').value;
-                const duration = document.getElementById('duration-select').value;
-
-                if (name && email && location && eventType && duration && selectedMusicians.length > 0) {
-                    console.log('--- Nueva Solicitud de Cotización ---');
-                    console.log('Nombre:', name);
-                    console.log('Email:', email);
-                    console.log('Músicos Seleccionados:', selectedMusicians.join(', '));
-                    console.log('Ubicación:', location);
-                    console.log('Tipo de Evento:', eventType);
-                    console.log('Duración:', duration);
-                    console.log('------------------------------------');
-                    alert('¡Gracias! Tu solicitud ha sido enviada. Pronto nos pondremos en contacto contigo.');
+            function showRepertorio(category, type) {
+                const songs = repertorioData[category] || [];
+                repertorioContent.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4">Repertorio de ${type}</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        ${songs.map(song => `<li class="font-medium">${song}</li>`).join('')}
+                    </ul>
+                `;
+            }
+            
+            repertorioBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const category = e.target.dataset.category;
+                    const isEventBtn = e.target.classList.contains('event');
                     
-                    // Clear the form and selection
-                    selectedMusicians = [];
-                    updateSelectedList();
-                    document.getElementById('name-input').value = '';
-                    document.getElementById('email-input').value = '';
-                    document.getElementById('location-input').value = '';
-                    document.getElementById('event-type-select').value = '';
-                    document.getElementById('duration-select').value = '';
-                } else {
-                    alert('Por favor, completa todos los campos y selecciona al menos un músico.');
+                    if (isEventBtn) {
+                        eventBtns.forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        selectedRepertoire.event = e.target.textContent;
+                    } else {
+                        genreBtns.forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        selectedRepertoire.genre = e.target.textContent;
+                    }
+                    
+                    showRepertorio(category, e.target.textContent);
+                });
+            });
+
+            // Set default repertorio and its text
+            showRepertorio('clasica', 'Música Clásica');
+            document.querySelector('.repertorio-btn[data-category="clasica"]').classList.add('active');
+            selectedRepertoire.genre = 'Música Clásica';
+            
+            quoteForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Set the hidden input values before submitting
+                musiciansInput.value = selectedMusicians.join(', ');
+                repertorioInput.value = `Género: ${selectedRepertoire.genre} / Evento: ${selectedRepertoire.event || 'No especificado'}`;
+                
+                const statusDiv = document.createElement('div');
+                statusDiv.id = 'form-status';
+                statusDiv.className = 'mt-4 text-center text-sm font-semibold';
+                quoteForm.appendChild(statusDiv);
+                
+                statusDiv.innerHTML = 'Enviando...';
+                statusDiv.className = 'mt-4 text-center text-sm font-semibold text-blue-500';
+
+                const formData = new FormData(quoteForm);
+                
+                try {
+                    const response = await fetch(quoteForm.action, {
+                        method: quoteForm.method,
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        statusDiv.innerHTML = '¡Cotización enviada con éxito! Nos pondremos en contacto contigo pronto.';
+                        statusDiv.className = 'mt-4 text-center text-sm font-semibold text-green-600';
+                        quoteForm.reset();
+                    } else {
+                        statusDiv.innerHTML = 'Ocurrió un error. Por favor, inténtalo de nuevo.';
+                        statusDiv.className = 'mt-4 text-center text-sm font-semibold text-red-600';
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    statusDiv.innerHTML = 'Ocurrió un error. Por favor, inténtalo de nuevo.';
+                    statusDiv.className = 'mt-4 text-center text-sm font-semibold text-red-600';
                 }
             });
 
-            // Prevent default form submission to handle it via JS
-            quoteFormSection.querySelector('form').addEventListener('submit', (e) => {
-                e.preventDefault();
+            // Modal functionality
+            const modals = document.querySelectorAll('.modal');
+            const viewDetailBtns = document.querySelectorAll('.view-details-btn');
+            const closeBtns = document.querySelectorAll('.close-button');
+
+            viewDetailBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modalId = btn.getAttribute('data-modal');
+                    document.getElementById(modalId).style.display = 'block';
+                });
+            });
+
+            closeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btn.closest('.modal').style.display = 'none';
+                });
+            });
+
+            window.addEventListener('click', (e) => {
+                modals.forEach(modal => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
             });
         });
-
-        // A simple alert function to replace window.alert
-        function alert(message) {
-            const modal = document.createElement('div');
-            modal.style.cssText = 'position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); padding:24px; background-color:white; border-radius:1rem; box-shadow:0 10px 15px rgba(0,0,0,0.1); z-index:1000; text-align:center; max-width:90%;';
-            modal.innerHTML = `<p class="text-lg font-medium text-gray-800">${message}</p><button onclick="this.parentNode.remove()" class="mt-4 bg-pink-600 text-white font-bold py-2 px-6 rounded-full">Aceptar</button>`;
-            document.body.appendChild(modal);
-        }
     </script>
 </body>
 </html>
