@@ -82,6 +82,25 @@
             width: 100%;
             height: 100%;
         }
+
+        /* --- Estilos para el carrusel automático --- */
+        .musicians-scroll {
+            display: flex;
+            animation: scroll-left 50s linear infinite; /* 50s es la duración de la animación */
+            width: fit-content;
+        }
+        .musicians-scroll:hover {
+            animation-play-state: paused;
+        }
+        .musicians-scroll > .gallery-item {
+            /* Asegura que los elementos se mantengan del mismo tamaño y no se encojan */
+            flex-shrink: 0;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        /* --- Fin de estilos para el carrusel automático --- */
     </style>
 </head>
 <body class="bg-gray-50">
@@ -160,37 +179,71 @@
     <section id="galeria" class="py-20 bg-gray-100">
         <div class="container mx-auto px-4 md:px-8">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800">Nuestros Músicos</h2>
-            <div id="gallery" class="gallery-container flex overflow-x-hidden space-x-8 pb-4 cursor-grab active:cursor-grabbing">
-                <!-- 10 Gallery items for auto-scrolling -->
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img class="w-full h-80 object-cover" src="https://i.ibb.co/C5jHH4jy/marcello.jpg" alt="Cellista de Dolce Ensamble">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img class="w-full h-80 object-cover" src="https://i.ibb.co/VcCQYbDp/ariadna-ari-arpista.jpg" alt="Arpista de Dolce Ensamble">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img class="w-full h-80 object-cover" src="https://i.ibb.co/HpVvkyZ7/Caro.jpg" alt="Cantante de Dolce Ensamble">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img class="w-full h-80 object-cover" src="https://i.ibb.co/0jBQBB0c/sax-azael.jpg" alt="Saxofonista de Dolce Ensamble">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img class="w-full h-80 object-cover" src="https://i.ibb.co/tMzCC7dz/pianista.jpg" alt="Pianista de Dolce Ensamble">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img class="w-full h-80 object-cover" src="https://i.ibb.co/7JMYCWVw/414867486-10232565539508056-4641127466506244359-n.jpg" alt="Violinista de Dolce Ensamble">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img class="w-full h-80 object-cover" src="https://i.ibb.co/YBtkYswp/percusionista.jpg" alt="Percusionista de Dolce Ensamble">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/adadad/ffffff?text=Flautista" alt="Flautista de Dolce Ensamble">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/b6b6b6/ffffff?text=Oboista" alt="Oboista de Dolce Ensamble">
-                </div>
-                <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                    <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/bfbfbf/ffffff?text=Clarinetista" alt="Clarinetista de Dolce Ensamble">
+            <div class="musicians-container relative overflow-hidden rounded-xl shadow-lg">
+                <div id="gallery" class="musicians-scroll">
+                    <!-- 10 Gallery items for auto-scrolling -->
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/C5jHH4jy/marcello.jpg" alt="Cellista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/VcCQYbDp/ariadna-ari-arpista.jpg" alt="Arpista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/HpVvkyZ7/Caro.jpg" alt="Cantante de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/0jBQBB0c/sax-azael.jpg" alt="Saxofonista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/tMzCC7dz/pianista.jpg" alt="Pianista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/7JMYCWVw/414867486-10232565539508056-4641127466506244359-n.jpg" alt="Violinista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/YBtkYswp/percusionista.jpg" alt="Percusionista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/adadad/ffffff?text=Flautista" alt="Flautista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/b6b6b6/ffffff?text=Oboista" alt="Oboista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/bfbfbf/ffffff?text=Clarinetista" alt="Clarinetista de Dolce Ensamble">
+                    </div>
+                    
+                    <!-- Duplicate items for an infinite loop -->
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/C5jHH4jy/marcello.jpg" alt="Cellista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/VcCQYbDp/ariadna-ari-arpista.jpg" alt="Arpista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/HpVvkyZ7/Caro.jpg" alt="Cantante de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/0jBQBB0c/sax-azael.jpg" alt="Saxofonista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/tMzCC7dz/pianista.jpg" alt="Pianista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/7JMYCWVw/414867486-10232565539508056-4641127466506244359-n.jpg" alt="Violinista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/YBtkYswp/percusionista.jpg" alt="Percusionista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/adadad/ffffff?text=Flautista" alt="Flautista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/b6b6b6/ffffff?text=Oboista" alt="Oboista de Dolce Ensamble">
+                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
+                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/bfbfbf/ffffff?text=Clarinetista" alt="Clarinetista de Dolce Ensamble">
+                    </div>
                 </div>
             </div>
         </div>
@@ -383,59 +436,7 @@
     </footer>
 
     <script>
-        // JavaScript for the manual and auto-scrolling gallery
-        const gallery = document.getElementById('gallery');
-        let isDragging = false;
-        let startX;
-        let scrollLeft;
-        
-        gallery.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            gallery.classList.add('active');
-            startX = e.pageX - gallery.offsetLeft;
-            scrollLeft = gallery.scrollLeft;
-        });
-
-        gallery.addEventListener('mouseleave', () => {
-            isDragging = false;
-            gallery.classList.remove('active');
-        });
-
-        gallery.addEventListener('mouseup', () => {
-            isDragging = false;
-            gallery.classList.remove('active');
-        });
-
-        gallery.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - gallery.offsetLeft;
-            const walk = (x - startX) * 2; // Adjust scroll speed
-            gallery.scrollLeft = scrollLeft - walk;
-        });
-
-        // Add touch events for mobile devices
-        gallery.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            gallery.classList.add('active');
-            startX = e.touches[0].pageX - gallery.offsetLeft;
-            scrollLeft = gallery.scrollLeft;
-        });
-
-        gallery.addEventListener('touchend', () => {
-            isDragging = false;
-            gallery.classList.remove('active');
-        });
-
-        gallery.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            const x = e.touches[0].pageX - gallery.offsetLeft;
-            const walk = (x - startX) * 2;
-            gallery.scrollLeft = scrollLeft - walk;
-        });
-
-
-        // Simple Quote Calculator Logic
+        // JavaScript for the quote calculator and form
         const musicianCheckboxes = document.querySelectorAll('.musician-checkbox');
         const hoursInput = document.getElementById('hours');
         const quoteResult = document.getElementById('quote-result');
