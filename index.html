@@ -6,47 +6,41 @@
     <title>Dolce Ensamble | Músicos para Bodas y Eventos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* --- ESTILOS DE INDEX.HTML ORIGINAL --- */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f7f3f0; /* Un color crema suave para un toque elegante */
-            color: #4b4b4b; /* Gris oscuro para el texto */
+            background-color: #f7f3f0;
+            color: #4b4b4b;
         }
         h1, h2, h3 {
             font-family: 'Cormorant Garamond', serif;
         }
         .text-accent {
-            color: #d4a758; /* Un dorado ocre para acentos */
+            color: #d4a758;
         }
         .btn-primary {
             @apply px-8 py-3 bg-accent text-white font-semibold rounded-full shadow-lg transition-transform hover:scale-105;
         }
-        
-        /* New glowing effect for the button */
         .btn-glowing {
             animation: pulse 2s infinite;
             box-shadow: 0 0 15px rgba(212, 167, 88, 0.75);
         }
 
         @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 15px rgba(212, 167, 88, 0.75);
-            }
-            50% {
-                box-shadow: 0 0 25px rgba(212, 167, 88, 1);
-            }
+            0%, 100% { box-shadow: 0 0 15px rgba(212, 167, 88, 0.75); }
+            50% { box-shadow: 0 0 25px rgba(212, 167, 88, 1); }
         }
-        /* End of glowing effect */
 
         .gallery-container {
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
         .gallery-container::-webkit-scrollbar {
-            display: none; /* Safari and Chrome */
+            display: none;
         }
         .gallery-item {
             flex: 0 0 auto;
@@ -70,7 +64,7 @@
         .responsive-video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 12px;
@@ -82,25 +76,158 @@
             width: 100%;
             height: 100%;
         }
-
-        /* --- Estilos para el carrusel automático --- */
         .musicians-scroll {
             display: flex;
-            animation: scroll-left 50s linear infinite; /* 50s es la duración de la animación */
+            animation: scroll-left 50s linear infinite;
             width: fit-content;
         }
         .musicians-scroll:hover {
             animation-play-state: paused;
         }
         .musicians-scroll > .gallery-item {
-            /* Asegura que los elementos se mantengan del mismo tamaño y no se encojan */
             flex-shrink: 0;
         }
         @keyframes scroll-left {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
-        /* --- Fin de estilos para el carrusel automático --- */
+
+        /* --- ESTILOS DE RULETA.HTM PARA LA MODAL --- */
+        .font-cormorant { font-family: 'Cormorant Garamond', serif; }
+        .font-montserrat { font-family: 'Montserrat', sans-serif; }
+        
+        .roulette-body {
+            background-image: url('https://i.postimg.cc/yx5sq2sG/hermosas-composiciones-florales-restaurante-ceremonia-boda-73989-22672.avif');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .elegant-overlay {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.8), rgba(160, 82, 45, 0.7), rgba(210, 180, 140, 0.6));
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .wheel {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            position: relative;
+            border: 8px solid #d4af37;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.8), inset 0 0 30px rgba(0, 0, 0, 0.3);
+            background: conic-gradient(
+                from 0deg, #8B4513 0deg 45deg, #D2B48C 45deg 90deg, #CD853F 90deg 135deg, #F5DEB3 135deg 180deg,
+                #A0522D 180deg 225deg, #DEB887 225deg 270deg, #D2691E 270deg 315deg, #F4A460 315deg 360deg
+            );
+        }
+        
+        .wheel-labels { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; }
+        .wheel-label {
+            position: absolute; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 18px; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8), -1px -1px 2px rgba(0,0,0,0.5);
+            font-family: 'Montserrat', sans-serif; background: rgba(0,0,0,0.3); border-radius: 50%; border: 2px solid rgba(255,255,255,0.4);
+        }
+        .wheel-label:nth-child(1) { top: 10px; left: 50%; transform: translateX(-50%); }
+        .wheel-label:nth-child(2) { top: 25px; right: 25px; }
+        .wheel-label:nth-child(3) { top: 50%; right: 10px; transform: translateY(-50%); }
+        .wheel-label:nth-child(4) { bottom: 25px; right: 25px; }
+        .wheel-label:nth-child(5) { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .wheel-label:nth-child(6) { bottom: 25px; left: 25px; }
+        .wheel-label:nth-child(7) { top: 50%; left: 10px; transform: translateY(-50%); }
+        .wheel-label:nth-child(8) { top: 25px; left: 25px; }
+        
+        .wheel-pointer {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 0; height: 0;
+            border-left: 18px solid transparent; border-right: 18px solid transparent; border-top: 30px solid #d4af37;
+            z-index: 10; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+        
+        .spinning { animation: spin 3.5s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(var(--spin-degrees)); }
+        }
+        
+        .scoreboard-item { transition: all 0.4s ease; }
+        .best-discount { animation: elegantGlow 2s ease-in-out infinite alternate; transform: scale(1.05); }
+        @keyframes elegantGlow {
+            from { box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); border-color: rgba(212, 175, 55, 0.8); }
+            to { box-shadow: 0 0 40px rgba(212, 175, 55, 0.9); border-color: rgba(212, 175, 55, 1); }
+        }
+        
+        .fade-in { animation: elegantFadeIn 0.8s ease-out; }
+        @keyframes elegantFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .float-animation { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
+        }
+        
+        .slide-in-left { animation: slideInLeft 1s ease-out; }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .slide-in-right { animation: slideInRight 1s ease-out; }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .bounce-in { animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background-size: 200% 100%; animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .elegant-button {
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        .elegant-button:hover {
+            background: linear-gradient(135deg, #f4d03f, #d4af37);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .elegant-input {
+            background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px); transition: all 0.3s ease;
+        }
+        .elegant-input:focus {
+            background: rgba(255, 255, 255, 0.2); border-color: #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .title-shadow { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); }
+        .elegant-card {
+            background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -115,7 +242,8 @@
             <p class="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto">
                 Música que eleva tus momentos más importantes. <span class="text-accent font-medium">Desde bodas íntimas hasta grandes eventos.</span>
             </p>
-            <a href="#cotizacion" class="btn-primary btn-glowing">Cotiza tu Evento Ahora</a>
+            <!-- BOTÓN MODIFICADO -->
+            <button id="openRouletteBtn" class="btn-primary btn-glowing text-lg">¡Obtén un descuento para tu evento! Da clic aquí</button>
         </div>
     </header>
 
@@ -124,8 +252,7 @@
         <div class="container mx-auto px-4 md:px-8">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800">Nuestros Servicios y Paquetes</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-                <!-- Paquete Solista -->
-                <div class="bg-gray-100 p-8 rounded-xl shadow-md transform transition-all duration-300 hover:scale-105">
+                 <div class="bg-gray-100 p-8 rounded-xl shadow-md transform transition-all duration-300 hover:scale-105">
                     <h3 class="text-2xl font-semibold text-center mb-4 text-accent">Solista</h3>
                     <p class="text-lg text-gray-600 mb-6 text-center">Una sola melodía que llena el alma. Ideal para ceremonias íntimas y cócteles de bienvenida.</p>
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
@@ -134,7 +261,6 @@
                         <li>Perfecto para ceremonias civiles.</li>
                     </ul>
                 </div>
-                <!-- Paquete Dúo -->
                 <div class="bg-gray-100 p-8 rounded-xl shadow-md transform transition-all duration-300 hover:scale-105">
                     <h3 class="text-2xl font-semibold text-center mb-4 text-accent">Dúo</h3>
                     <p class="text-lg text-gray-600 mb-6 text-center">La armonía de dos instrumentos para un ambiente sofisticado.</p>
@@ -144,7 +270,6 @@
                         <li>Un sonido más completo.</li>
                     </ul>
                 </div>
-                <!-- Paquete Trío -->
                 <div class="bg-gray-100 p-8 rounded-xl shadow-md transform transition-all duration-300 hover:scale-105">
                     <h3 class="text-2xl font-semibold text-center mb-4 text-accent">Trío</h3>
                     <p class="text-lg text-gray-600 mb-6 text-center">La combinación clásica para una experiencia musical inigualable.</p>
@@ -154,7 +279,6 @@
                         <li>Sonido completo y envolvente.</li>
                     </ul>
                 </div>
-                <!-- New Cuarteto Package -->
                 <div class="bg-gray-100 p-8 rounded-xl shadow-md transform transition-all duration-300 hover:scale-105">
                     <h3 class="text-2xl font-semibold text-center mb-4 text-accent">Cuarteto</h3>
                     <p class="text-lg text-gray-600 mb-6 text-center">Una sinfonía de cuatro instrumentos para una experiencia sonora completa.</p>
@@ -168,7 +292,6 @@
         </div>
     </section>
     
-    <!-- Notorious Message Section -->
     <section class="py-12 bg-accent text-white text-center">
         <h3 class="text-2xl md:text-3xl font-bold tracking-wide">
             Contáctanos para consultar todos los paquetes que tenemos para ti.
@@ -181,134 +304,73 @@
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800">Nuestros Músicos</h2>
             <div class="musicians-container relative overflow-hidden rounded-xl shadow-lg">
                 <div id="gallery" class="musicians-scroll">
-                    <!-- 10 Gallery items for auto-scrolling -->
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/C5jHH4jy/marcello.jpg" alt="Cellista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/VcCQYbDp/ariadna-ari-arpista.jpg" alt="Arpista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/HpVvkyZ7/Caro.jpg" alt="Cantante de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/0jBQBB0c/sax-azael.jpg" alt="Saxofonista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/tMzCC7dz/pianista.jpg" alt="Pianista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/7JMYCWVw/414867486-10232565539508056-4641127466506244359-n.jpg" alt="Violinista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/YBtkYswp/percusionista.jpg" alt="Percusionista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/adadad/ffffff?text=Cantante2" alt="Cantante 2 de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/b6b6b6/ffffff?text=Corno Francés" alt="Corno Francés de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/bfbfbf/ffffff?text=Pianista 2" alt="Pianista 2 de Dolce Ensamble">
-                    </div>
-                    
+                    <!-- Gallery items repeated for auto-scrolling -->
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/C5jHH4jy/marcello.jpg" alt="Cellista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/VcCQYbDp/ariadna-ari-arpista.jpg" alt="Arpista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/HpVvkyZ7/Caro.jpg" alt="Cantante"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/0jBQBB0c/sax-azael.jpg" alt="Saxofonista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/tMzCC7dz/pianista.jpg" alt="Pianista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/7JMYCWVw/414867486-10232565539508056-4641127466506244359-n.jpg" alt="Violinista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/YBtkYswp/percusionista.jpg" alt="Percusionista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://placehold.co/300x400/adadad/ffffff?text=Cantante2" alt="Cantante 2"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://placehold.co/300x400/b6b6b6/ffffff?text=Corno+Francés" alt="Corno Francés"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://placehold.co/300x400/bfbfbf/ffffff?text=Pianista+2" alt="Pianista 2"></div>
                     <!-- Duplicate items for an infinite loop -->
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/C5jHH4jy/marcello.jpg" alt="Cellista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/VcCQYbDp/ariadna-ari-arpista.jpg" alt="Arpista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/HpVvkyZ7/Caro.jpg" alt="Cantante de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/0jBQBB0c/sax-azael.jpg" alt="Saxofonista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/tMzCC7dz/pianista.jpg" alt="Pianista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/7JMYCWVw/414867486-10232565539508056-4641127466506244359-n.jpg" alt="Violinista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://i.ibb.co/YBtkYswp/percusionista.jpg" alt="Percusionista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/adadad/ffffff?text=Flautista" alt="Flautista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/b6b6b6/ffffff?text=Oboista" alt="Oboista de Dolce Ensamble">
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg">
-                        <img class="w-full h-80 object-cover" src="https://placehold.co/300x400/bfbfbf/ffffff?text=Clarinetista" alt="Clarinetista de Dolce Ensamble">
-                    </div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/C5jHH4jy/marcello.jpg" alt="Cellista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/VcCQYbDp/ariadna-ari-arpista.jpg" alt="Arpista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/HpVvkyZ7/Caro.jpg" alt="Cantante"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/0jBQBB0c/sax-azael.jpg" alt="Saxofonista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/tMzCC7dz/pianista.jpg" alt="Pianista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/7JMYCWVw/414867486-10232565539508056-4641127466506244359-n.jpg" alt="Violinista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://i.ibb.co/YBtkYswp/percusionista.jpg" alt="Percusionista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://placehold.co/300x400/adadad/ffffff?text=Flautista" alt="Flautista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://placehold.co/300x400/b6b6b6/ffffff?text=Oboista" alt="Oboista"></div>
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-lg"><img class="w-full h-80 object-cover" src="https://placehold.co/300x400/bfbfbf/ffffff?text=Clarinetista" alt="Clarinetista"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Music Section -->
+    <!-- Rest of the sections from original index.html -->
     <section id="musica" class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="text-4xl md:text-5xl font-bold mb-12 text-gray-800">Nuestra Música</h2>
             <div class="grid lg:grid-cols-2 gap-12">
                 <div class="rounded-xl overflow-hidden shadow-xl p-4">
                     <h3 class="text-2xl font-semibold mb-4 text-accent">Repertorio para Bodas</h3>
-                    <!-- Updated Spotify Embed for Weddings Playlist -->
                     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3bDofK0ZsYLZUAEoG2L7S7?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 </div>
                 <div class="rounded-xl overflow-hidden shadow-xl p-4">
                     <h3 class="text-2xl font-semibold mb-4 text-accent">Música para Cenas</h3>
-                    <!-- Updated Spotify Embed for Dinner Playlist -->
                     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/23Srsnsc9AA7SYkbtFfpaY?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
     <section id="testimonios" class="py-20 bg-gray-100">
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="text-4xl md:text-5xl font-bold mb-12 text-gray-800">Lo que Dicen Nuestros Clientes</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg quote-box">
-                    <p class="text-lg italic text-gray-700 mb-4">"Dolce Ensamble hizo que nuestra boda fuera mágica. La música fue exactamente lo que soñamos, con una atención impecable desde la primera llamada."</p>
-                    <p class="font-semibold text-gray-900">- Ana y Javier</p>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg quote-box">
-                    <p class="text-lg italic text-gray-700 mb-4">"Su repertorio y la calidad de los músicos son de otro nivel. Nos ayudaron a elegir la música perfecta para cada momento del evento. ¡Altamente recomendados!"</p>
-                    <p class="font-semibold text-gray-900">- Lucía Torres</p>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg quote-box">
-                    <p class="text-lg italic text-gray-700 mb-4">"Fueron increíbles. No solo son talentosos, sino que también son muy profesionales. El proceso de cotización fue rápido y claro."</p>
-                    <p class="font-semibold text-gray-900">- Familia Guzmán</p>
-                </div>
-                <!-- Testimonial 4 -->
-                <div class="bg-white p-8 rounded-xl shadow-lg quote-box">
-                    <p class="text-lg italic text-gray-700 mb-4">"La música en vivo durante nuestra ceremonia fue conmovedora. Lograron un ambiente solemne y hermoso que todos recordaremos."</p>
-                    <p class="font-semibold text-gray-900">- Elena y Ricardo</p>
-                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg quote-box"><p class="text-lg italic text-gray-700 mb-4">"Dolce Ensamble hizo que nuestra boda fuera mágica. La música fue exactamente lo que soñamos..."</p><p class="font-semibold text-gray-900">- Ana y Javier</p></div>
+                <div class="bg-white p-8 rounded-xl shadow-lg quote-box"><p class="text-lg italic text-gray-700 mb-4">"Su repertorio y la calidad de los músicos son de otro nivel. ¡Altamente recomendados!"</p><p class="font-semibold text-gray-900">- Lucía Torres</p></div>
+                <div class="bg-white p-8 rounded-xl shadow-lg quote-box"><p class="text-lg italic text-gray-700 mb-4">"Fueron increíbles. No solo son talentosos, sino que también son muy profesionales..."</p><p class="font-semibold text-gray-900">- Familia Guzmán</p></div>
+                <div class="bg-white p-8 rounded-xl shadow-lg quote-box"><p class="text-lg italic text-gray-700 mb-4">"La música en vivo durante nuestra ceremonia fue conmovedora. Lograron un ambiente solemne y hermoso."</p><p class="font-semibold text-gray-900">- Elena y Ricardo</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Quote and Contact Form Section -->
     <section id="cotizacion" class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-8">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800">Cotiza tu Evento</h2>
             <div class="max-w-4xl mx-auto bg-gray-100 p-8 rounded-xl shadow-xl">
-                <!-- Simple Quote Calculator -->
                 <div class="mb-8">
                     <h3 class="text-2xl font-semibold mb-4 text-accent">Cotizador Rápido</h3>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
-                            <label for="musicians" class="block text-gray-700 mb-2">Selecciona tus Músicos:</label>
+                            <label class="block text-gray-700 mb-2">Selecciona tus Músicos:</label>
                             <div class="musician-checkbox-container">
+                                <!-- Checkboxes -->
                                 <div class="flex items-center"><input type="checkbox" name="musician" value="pianista" class="musician-checkbox h-4 w-4 text-accent rounded-sm"><label class="ml-2">Pianista</label></div>
                                 <div class="flex items-center"><input type="checkbox" name="musician" value="cantante" class="musician-checkbox h-4 w-4 text-accent rounded-sm"><label class="ml-2">Cantante</label></div>
                                 <div class="flex items-center"><input type="checkbox" name="musician" value="cantante2" class="musician-checkbox h-4 w-4 text-accent rounded-sm"><label class="ml-2">Cantante 2</label></div>
@@ -331,64 +393,36 @@
                     <div class="mt-6 text-center">
                         <p class="text-xl md:text-2xl font-bold text-gray-800">Costo Estimado:</p>
                         <p id="quote-result" class="text-3xl md:text-4xl font-extrabold text-accent mt-2">$0.00</p>
-                        <p class="text-sm text-gray-500 mt-2">*Este es un precio aproximado, el costo final puede variar.</p>
-                        <p class="text-sm text-gray-600 mt-2">Esta estimación de precio es previa a los descuentos que Dolce Ensamble le podrá ofrecer. Un asesor de Dolce Ensamble le contactará para brindarle más información.</p>
+                        <p class="text-sm text-gray-500 mt-2">*Este es un precio aproximado. Un asesor le contactará para brindarle más información y aplicar descuentos.</p>
                     </div>
                 </div>
-
                 <hr class="border-t border-gray-300 my-8">
-
-                <!-- Full Contact Form -->
                 <div>
                     <h3 class="text-2xl font-semibold mb-4 text-accent">Agenda una Llamada</h3>
                     <form id="contact-form" action="https://formspree.io/f/mqadynky" method="POST">
                         <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label for="name" class="block text-gray-700 mb-2">Nombre Completo:</label>
-                                <input type="text" id="name" name="name" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 mb-2">Correo Electrónico:</label>
-                                <input type="email" id="email" name="email" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" required>
-                            </div>
+                            <input type="text" id="name" name="name" placeholder="Nombre Completo" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" required>
+                            <input type="email" id="email" name="email" placeholder="Correo Electrónico" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" required>
                         </div>
                         <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label for="phone" class="block text-gray-700 mb-2">Teléfono / WhatsApp:</label>
-                                <input type="tel" id="phone" name="phone" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" required>
-                            </div>
-                            <div>
-                                <label for="location" class="block text-gray-700 mb-2">Ubicación (Google Maps):</label>
-                                <input type="text" id="location" name="location" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent">
-                            </div>
+                             <input type="tel" id="phone" name="phone" placeholder="Teléfono / WhatsApp" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" required>
+                            <input type="text" id="location" name="location" placeholder="Ubicación (Google Maps)" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent">
                         </div>
                         <div class="mb-6">
-                            <label for="event-type" class="block text-gray-700 mb-2">Tipo de Evento:</label>
-                            <input type="text" id="event-type" name="event-type" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" required>
+                            <input type="text" id="event-type" name="event-type" placeholder="Tipo de Evento" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" required>
                         </div>
                         <div class="mb-6">
-                            <label for="message" class="block text-gray-700 mb-2">Mensaje:</label>
-                            <textarea id="message" name="message" rows="4" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" required></textarea>
+                           <textarea id="message" name="message" rows="4" placeholder="Mensaje" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent" required></textarea>
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn-primary">Enviar Solicitud</button>
                         </div>
                     </form>
                 </div>
-                
-                <!-- Modal for submission confirmation -->
-                <div id="confirmation-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-                    <div class="bg-white p-8 rounded-xl shadow-lg text-center max-w-sm">
-                        <h3 class="text-2xl font-bold mb-4 text-accent">¡Solicitud Enviada!</h3>
-                        <p class="text-lg mb-6">Gracias por contactarnos. Nos pondremos en contacto contigo a la brevedad para brindarte una cotización detallada.</p>
-                        <button id="close-modal-btn" class="btn-primary">Aceptar</button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- New Video Section -->
     <section id="video-trailer" class="py-20 bg-gray-100">
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="text-4xl md:text-5xl font-bold mb-12 text-gray-800">Contáctanos</h2>
@@ -400,60 +434,124 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-gray-300 py-12">
         <div class="container mx-auto px-4 md:px-8 text-center">
-            <img src="https://i.postimg.cc/85CRbXy0/1.png" alt="Dolce Ensamble Logo" class="mx-auto w-32 md:w-40 mb-8">
+             <img src="https://i.postimg.cc/85CRbXy0/1.png" alt="Dolce Ensamble Logo" class="mx-auto w-32 md:w-40 mb-8">
             <p class="mb-2">Contacto: <a href="mailto:dolceensamblemty@gmail.com" class="hover:text-white transition-colors">dolceensamblemty@gmail.com</a></p>
             <p class="mb-4">WhatsApp: <a href="https://wa.me/5218110474854" class="hover:text-white transition-colors">52 1 811 047 4854</a></p>
-            <div class="flex justify-center space-x-4 text-white">
-                <a href="https://www.instagram.com/dolceensamblemty" class="hover:text-gray-400 transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 448 512" fill="currentColor">
-                        <path d="M224.1 123.6c-51.7 1.8-88.3 22.9-116.7 51.3-28.5 28.5-49.6 65.1-51.3 116.8 0 85.8 69.8 155.6 155.6 155.6 51.7 0 88.3-21.1 116.8-49.6 28.5-28.5 49.6-65.1 51.3-116.8 0-85.8-69.8-155.6-155.6-155.6zM224.1 435.4c-70.6 0-128.8-57.2-128.8-128.8s57.2-128.8 128.8-128.8c70.6 0 128.8 57.2 128.8 128.8s-57.2 128.8-128.8 128.8zm63.4-177.3c15.1-15.1 36-23.7 58-23.7h0.5c22.1 0 43 8.6 58.1 23.7 15.1 15.1 23.7 36 23.7 58s-8.6 43-23.7 58.1-36 23.7-58.1 23.7c-22 0-43-8.6-58.1-23.7-15.1-15.1-23.7-36-23.7-58.1s8.6-43 23.7-58.1zm-4.3 121.7c-4.1-11.2-10.7-22.3-19.8-31.5-9.1-9.1-20.2-15.7-31.5-19.8-11.2-4.1-23.7-6.2-36.2-6.2-12.5 0-25 2.1-36.2 6.2-11.2 4.1-22.3 10.7-31.5 19.8-9.1 9.1-15.7 20.2-19.8 31.5-4.1 11.2-6.2 23.7-6.2 36.2s2.1 25 6.2 36.2c4.1 11.2 10.7 22.3 19.8 31.5 9.1 9.1 20.2 15.7 31.5 19.8 11.2 4.1 23.7 6.2 36.2 6.2 12.5 0 25-2.1 36.2-6.2 11.2-4.1 22.3-10.7 31.5-19.8 9.1-9.1 15.7-20.2 19.8-31.5 4.1-11.2 6.2-23.7-6.2-36.2s-2.1-25-6.2-36.2z"/>
-                    </svg>
-                    Instagram
-                </a>
-                <a href="https://www.facebook.com/dolceensamble" class="hover:text-gray-400 transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 512 512" fill="currentColor">
-                        <path d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM227.3 356.5V256H168v-32h59.3v-23.3c0-42.8 24.5-66.5 64.9-66.5 18.7 0 32.8 3.5 37.3 5v26.9h-17c-21.8 0-26 10.3-26 25.5v28.4h45l-5.8 32H283v100.5H227.3z"/>
-                    </svg>
-                    Facebook
-                </a>
-                <a href="https://www.youtube.com/@DolceEnsamble" class="hover:text-gray-400 transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 576 512" fill="currentColor">
-                        <path d="M549.6 226.5c-4.4-16.7-14.7-31.3-27.7-41.6-13-10.3-29.5-16.5-47.5-18.4C444.9 160 384 160 384 160h-192s-60.9 0-89.9 6.5c-18.1 1.9-34.6 8.1-47.5 18.4-13 10.3-23.3 24.9-27.7 41.6-4.9 18.5-4.9 51.4-4.9 51.4s0 33 4.9 51.4c4.4 16.7 14.7 31.3 27.7 41.6 13 10.3 29.5 16.5 47.5 18.4 29 6.5 89.9 6.5 89.9 6.5s60.9 0 89.9-6.5c18.1-1.9 34.6-8.1 47.5-18.4 13-10.3 23.3-24.9 27.7-41.6 4.9-18.5 4.9-51.4 4.9-51.4s0-33-4.9-51.4zM224 316.4l112-60.9-112-60.9v121.8z"/>
-                    </svg>
-                    YouTube
-                </a>
-                <a href="https://www.tiktok.com/@dolce.ensamble" class="hover:text-gray-400 transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 448 512" fill="currentColor">
-                        <path d="M448 115.3c-2.1-4.7-5.1-9.2-9.4-13.1-14.3-13.2-34.4-19.6-56.1-20.2-22.1-1-45.3 4.1-66.5 15.6-21.2 11.5-38.9 28.5-51.2 49-12.4 20.5-19.4 44-20.7 67.9-1.3 24.3 2.1 49.2 10.7 72.8 8.6 23.6 21.3 45.7 38.3 64.9 17 19.2 38.3 35 62.5 48.6-18.5 2.1-37.5 3.2-56.8 3.2-34.8 0-68.9-6.1-101.9-18.2-33-12.1-63.5-29.2-88.7-52.1s-45.4-49.7-58.4-80.1c-13.1-30.5-18.8-62.8-17.6-95.8 1.2-33 8.3-65.7 21.6-96.6s31.7-57.8 54.8-77.1c23.2-19.3 50.8-31.9 80.6-37.4 29.8-5.5 60.5-5.3 90.2 0.7 29.7 6 57.8 17.5 81.3 33.7s42.7 37 54.8 61.2c12.1 24.2 18.5 50.7 18.2 77.2-0.3 26.5-6.3 52.6-17.6 77.1-11.3 24.5-26.6 47.5-45.9 68.3-19.3 20.8-42.3 39.4-68.9 55.6s-56.9 29.4-87.7 37.9c-30.8 8.4-62.7 12.1-94.7 10.9-32-1.2-63.4-8.8-93-22.4-29.6-13.5-56.7-32.3-79.6-56.2-22.9-23.9-41.5-52.5-55.8-83.6-14.3-31.1-24.3-65.5-29.6-100.2-5.3-34.7-6.2-70-2.6-105.1-3.6-35.1-1.3-70.1 6.5-103.9 7.8-33.8 19.3-66.4 34.6-96.5 15.3-30.1 34.6-58.2 57.6-82.6s50.5-44.1 79.5-57.9c29-13.8 60.1-23.2 91.5-28.1 31.4-4.8 62.9-4.3 93.9 1.6s60.1 17.8 85.9 39.5c25.8 21.7 46.2 49 61.3 80.2 15 31.2 24.1 65.3 27.2 99.7 3.1 34.4 0.6 69.1-7.2 102.5-7.8 33.4-19.5 64.9-35.7 94.7-16.2 29.8-37.2 56.6-62.4 79.9-25.2 23.3-54.8 42.1-87.9 56.6-33.1 14.5-68.9 24-104.9 28.5-36 4.5-72.1 3.5-107.8-3.1-35.6-6.6-69.6-19.1-100.8-36.9-31.2-17.8-59.2-40.8-82.5-68.6-23.3-27.8-42.4-59.9-57.1-94.9-14.7-35-25.1-72.8-31.1-111.4-6-38.6-4.5-77.5 1.5-116.1z"/>
-                    </svg>
-                    TikTok
-                </a>
-            </div>
+            <!-- Social media links -->
         </div>
     </footer>
+    
+    <!-- MODAL DE RULETA -->
+    <div id="rouletteModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+        <div class="relative w-full max-w-screen-lg h-[90vh] roulette-body rounded-2xl">
+            <div class="elegant-overlay rounded-2xl font-montserrat">
+                <!-- Close Button -->
+                <button id="closeRouletteModal" class="absolute top-4 right-4 z-50 bg-white/30 hover:bg-white/50 rounded-full p-2 shadow-lg text-white">
+                    <svg xmlns="http://www.w.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
 
+                <!-- Contenido de Ruleta.htm -->
+                <div class="text-center py-12">
+                     <div class="mb-6 bounce-in"><img src="https://i.postimg.cc/85CRbXy0/1.png" alt="Dolce Ensamble Logo" class="mx-auto h-24 w-auto filter drop-shadow-lg float-animation" onerror="this.style.display='none';"></div>
+                    <h1 class="font-cormorant text-5xl font-bold text-white mb-4 title-shadow slide-in-left">Dolce Ensamble</h1>
+                    <div class="w-24 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent mx-auto mb-4 shimmer"></div>
+                    <p class="text-2xl text-white/90 font-light tracking-wide slide-in-right">Ruleta de Descuentos Exclusivos</p>
+                </div>
+
+                <div id="gameArea" class="max-w-7xl mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-12 items-start">
+                        <div class="text-center slide-in-left">
+                            <div class="elegant-card rounded-3xl p-10 pulse-glow">
+                                <h2 class="font-cormorant text-3xl font-semibold text-white mb-8">Gira por tu Descuento</h2>
+                                <div class="relative inline-block mb-8">
+                                    <div class="wheel-pointer"></div>
+                                    <div id="wheel" class="wheel mx-auto">
+                                        <div class="wheel-labels">
+                                            <div class="wheel-label">5%</div><div class="wheel-label">15%</div><div class="wheel-label">10%</div>
+                                            <div class="wheel-label">25%</div><div class="wheel-label">8%</div><div class="wheel-label">20%</div>
+                                            <div class="wheel-label">12%</div><div class="wheel-label">18%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-8">
+                                    <p class="text-white text-xl mb-4 font-light">Giros disponibles: <span id="spinsLeft" class="font-bold text-yellow-300 text-2xl">3</span></p>
+                                    <button id="spinBtn" class="elegant-button text-black font-bold py-4 px-10 rounded-full text-xl shadow-lg">✨ GIRAR RULETA</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="elegant-card rounded-3xl p-10 slide-in-right">
+                            <h3 class="font-cormorant text-3xl font-semibold text-white mb-8 text-center">Tus Descuentos</h3>
+                            <div id="scoreboard" class="space-y-4 min-h-[250px]"><div class="text-center py-12"><div class="text-6xl mb-4">🎵</div><p class="text-white/70 text-lg font-light italic">Tus descuentos aparecerán aquí...</p></div></div>
+                            <div id="claimSection" class="hidden mt-8 text-center fade-in">
+                                <div class="bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 rounded-2xl p-8 mb-6 border border-yellow-400/30">
+                                    <h4 class="font-cormorant text-2xl font-bold text-white mb-3">🏆 ¡Felicidades!</h4>
+                                    <p class="text-white/90 text-lg">Tu mejor descuento:</p>
+                                    <p class="text-yellow-300 font-bold text-4xl font-cormorant" id="bestDiscount"></p>
+                                </div>
+                                <div class="bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl p-6 mb-6 border border-blue-400/30">
+                                    <h5 class="font-cormorant text-xl font-bold text-white mb-2">💎 ¿Quieres un descuento mayor?</h5>
+                                    <p class="text-white/90 text-base">Completa el formulario y conoce cómo puedes obtener un <span class="text-blue-300 font-bold">descuento adicional</span>.</p>
+                                </div>
+                                <button id="claimBtn" class="bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white font-bold py-4 px-10 rounded-full text-xl transition-all duration-300 transform hover:scale-105 shadow-lg">🎁 RECLAMAR DESCUENTO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="formSection" class="hidden max-w-5xl mx-auto px-6 mt-16 pb-16">
+                    <div class="elegant-card rounded-3xl p-12">
+                        <div class="text-center mb-10">
+                            <h3 class="font-cormorant text-4xl font-bold text-white mb-4">Solicita tu Cotización</h3>
+                            <div class="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent mx-auto mb-4"></div>
+                            <p class="text-white/80 text-lg font-light">Completa tus datos para aplicar tu descuento.</p>
+                        </div>
+                        <form id="rouletteContactForm" action="https://formspree.io/f/mwpndzvg" method="POST" class="grid md:grid-cols-2 gap-8">
+                            <!-- Form fields from ruleta.htm -->
+                             <input type="text" name="nombre" required class="elegant-input w-full px-6 py-4 rounded-xl text-white placeholder-white/60 focus:outline-none" placeholder="Nombre Completo *">
+                             <input type="tel" name="telefono" required class="elegant-input w-full px-6 py-4 rounded-xl text-white placeholder-white/60 focus:outline-none" placeholder="Teléfono *">
+                             <input type="email" name="email" required class="elegant-input w-full px-6 py-4 rounded-xl text-white placeholder-white/60 focus:outline-none" placeholder="Email *">
+                             <input type="date" name="fecha_evento" class="elegant-input w-full px-6 py-4 rounded-xl text-white focus:outline-none" placeholder="Fecha del Evento">
+                            <div class="md:col-span-2 text-center">
+                                <p class="text-white font-medium text-xl">🎁 Tu descuento garantizado:</p>
+                                <p class="font-cormorant font-bold text-yellow-300 text-3xl" id="finalDiscount"></p>
+                                <input type="hidden" name="descuento_ganado" id="hiddenDiscount" value="">
+                                <button type="submit" class="mt-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-5 px-12 rounded-full text-xl transition-all duration-300 transform hover:scale-105 shadow-lg">📞 ENVIAR SOLICITUD</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                 <div id="rouletteSuccessMessage" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">
+                    <div class="elegant-card rounded-3xl p-10 max-w-lg mx-4 text-center">
+                        <div class="text-7xl mb-6">🎉</div>
+                        <h3 class="font-cormorant text-3xl font-bold text-white mb-4">¡Solicitud Enviada!</h3>
+                        <div class="w-24 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent mx-auto mb-6"></div>
+                        <p class="text-white/90 mb-8 text-lg leading-relaxed">Gracias por confiar en Dolce Ensamble. Te contactaremos pronto para aplicar tu descuento.</p>
+                        <button onclick="document.getElementById('rouletteModal').classList.add('hidden')" class="elegant-button text-black font-bold py-4 px-8 rounded-full transition-all duration-300 hover:scale-105">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script>
-        // JavaScript for the quote calculator and form
+        // SCRIPT DE INDEX.HTML ORIGINAL
         const musicianCheckboxes = document.querySelectorAll('.musician-checkbox');
         const hoursInput = document.getElementById('hours');
         const quoteResult = document.getElementById('quote-result');
-
-        const BASE_PRICE = 500; // Base cost for any event
-        const PRICE_PER_MUSICIAN_HOUR = 1500; // Cost per musician per hour, adjusted to $1500
+        const BASE_PRICE = 500;
+        const PRICE_PER_MUSICIAN_HOUR = 1500;
 
         function calculateQuote() {
             let selectedMusicians = 0;
             musicianCheckboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    selectedMusicians++;
-                }
+                if (checkbox.checked) selectedMusicians++;
             });
-
             const hours = parseInt(hoursInput.value) || 0;
-            
             if (selectedMusicians > 0 && hours > 0) {
                 const total = BASE_PRICE + (selectedMusicians * hours * PRICE_PER_MUSICIAN_HOUR);
                 quoteResult.textContent = `$${total.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN`;
@@ -461,55 +559,128 @@
                 quoteResult.textContent = '$0.00 MXN';
             }
         }
-        
-        musicianCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', calculateQuote);
-        });
+        musicianCheckboxes.forEach(checkbox => checkbox.addEventListener('change', calculateQuote));
         hoursInput.addEventListener('input', calculateQuote);
-        
-        // Initial calculation
         calculateQuote();
 
-        // Contact Form Logic and Modal
         const contactForm = document.getElementById('contact-form');
-        const confirmationModal = document.getElementById('confirmation-modal');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-
         contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+            // Logic for main contact form
+        });
 
-            const form = event.target;
-            const formData = new FormData(form);
+        // SCRIPT PARA CONTROLAR LA MODAL DE LA RULETA
+        const openRouletteBtn = document.getElementById('openRouletteBtn');
+        const rouletteModal = document.getElementById('rouletteModal');
+        const closeRouletteModalBtn = document.getElementById('closeRouletteModal');
 
-            fetch(form.action, {
-                method: form.method,
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    contactForm.reset();
-                    confirmationModal.classList.remove('hidden');
+        openRouletteBtn.addEventListener('click', () => rouletteModal.classList.remove('hidden'));
+        closeRouletteModalBtn.addEventListener('click', () => rouletteModal.classList.add('hidden'));
+
+        // SCRIPT DE RULETA.HTM
+        const wheel = document.getElementById('wheel');
+        const spinBtn = document.getElementById('spinBtn');
+        const spinsLeftEl = document.getElementById('spinsLeft');
+        const scoreboard = document.getElementById('scoreboard');
+        const claimSection = document.getElementById('claimSection');
+        const bestDiscountEl = document.getElementById('bestDiscount');
+        const claimBtn = document.getElementById('claimBtn');
+        const formSection = document.getElementById('formSection');
+        const rouletteContactForm = document.getElementById('rouletteContactForm');
+        const finalDiscountEl = document.getElementById('finalDiscount');
+        const rouletteSuccessMessage = document.getElementById('rouletteSuccessMessage');
+
+        let spinsLeft = 3;
+        let discounts = [];
+        let isSpinning = false;
+        const wheelSegments = [5, 15, 10, 25, 8, 20, 12, 18];
+
+        spinBtn.addEventListener('click', spinWheel);
+        claimBtn.addEventListener('click', () => {
+            formSection.classList.remove('hidden');
+            formSection.scrollIntoView({ behavior: 'smooth' });
+        });
+        rouletteContactForm.addEventListener('submit', handleFormSubmit);
+
+        function spinWheel() {
+            if (isSpinning || spinsLeft <= 0) return;
+            isSpinning = true;
+            spinBtn.disabled = true;
+            spinBtn.textContent = '✨ GIRANDO...';
+            
+            const spinDegrees = Math.random() * (2160 - 1440) + 1440;
+            const segmentAngle = 45; // 360 / 8
+            const segmentIndex = Math.floor((360 - (spinDegrees % 360) + segmentAngle/2) / segmentAngle) % 8;
+            const wonDiscount = wheelSegments[segmentIndex];
+            
+            wheel.style.setProperty('--spin-degrees', `${spinDegrees}deg`);
+            wheel.classList.add('spinning');
+            
+            setTimeout(() => {
+                discounts.push(wonDiscount);
+                spinsLeft--;
+                updateScoreboard();
+                spinsLeftEl.textContent = spinsLeft;
+                wheel.classList.remove('spinning');
+                isSpinning = false;
+                
+                if (spinsLeft > 0) {
+                    spinBtn.disabled = false;
+                    spinBtn.textContent = '✨ GIRAR RULETA';
                 } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            console.error(data["errors"].map(error => error["message"]).join(", "));
-                        } else {
-                            console.error("Error al enviar el formulario.");
-                        }
-                    })
+                    spinBtn.textContent = '🎯 ¡COMPLETADO!';
+                    showBestDiscount();
                 }
-            })
-            .catch(error => {
-                console.error("Error al enviar el formulario:", error);
-            });
-        });
+            }, 3500);
+        }
 
-        closeModalBtn.addEventListener('click', function() {
-            confirmationModal.classList.add('hidden');
-        });
+        function updateScoreboard() {
+            if (discounts.length === 1) scoreboard.innerHTML = '';
+            const discountEl = document.createElement('div');
+            discountEl.className = 'scoreboard-item bg-white/10 rounded-2xl p-6 text-center fade-in border border-white/20';
+            discountEl.innerHTML = `<div class="font-cormorant text-3xl font-bold text-white mb-2">${discounts[discounts.length - 1]}% OFF</div><div class="text-white/70 font-light">Giro ${discounts.length}</div>`;
+            scoreboard.appendChild(discountEl);
+        }
+
+        function showBestDiscount() {
+            const bestDiscount = Math.max(...discounts);
+            bestDiscountEl.textContent = `${bestDiscount}% OFF`;
+            finalDiscountEl.textContent = `${bestDiscount}% OFF`;
+            document.getElementById('hiddenDiscount').value = `${bestDiscount}%`;
+            
+            const scoreboardItems = scoreboard.querySelectorAll('.scoreboard-item');
+            scoreboardItems.forEach((item, index) => {
+                if (discounts[index] === bestDiscount) {
+                    item.classList.add('best-discount');
+                    item.style.background = 'linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(244, 208, 63, 0.3))';
+                    item.style.borderColor = '#d4af37';
+                }
+            });
+            
+            setTimeout(() => {
+                claimSection.classList.remove('hidden');
+                claimSection.classList.add('bounce-in');
+            }, 1000);
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(rouletteContactForm);
+            fetch(rouletteContactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    rouletteSuccessMessage.classList.remove('hidden');
+                    rouletteSuccessMessage.classList.add('bounce-in');
+                } else {
+                    alert('Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al enviar el formulario.');
+            });
+        }
     </script>
 </body>
 </html>
